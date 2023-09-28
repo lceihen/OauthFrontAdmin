@@ -2,7 +2,6 @@ version: "3"
 services:
   servername:
     container_name: ${SELFHOST}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}
-    restart: always
     build:
       context: .
       dockerfile: Dockerfile
