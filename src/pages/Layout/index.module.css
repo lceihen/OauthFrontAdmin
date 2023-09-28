@@ -1,0 +1,7 @@
+.logo {
+  width: 100%;
+  height: 64px;
+  background: url("https://lc-assets.oss-cn-beijing.aliyuncs.com/25978500_0_final.png")
+    no-repeat top;
+  background-size: cover;
+}
