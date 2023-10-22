@@ -1,4 +1,3 @@
-import { authConfig } from "@/config";
 import { _window } from "@/utils";
 import { message } from "antd";
 export const handleGetParamString = (data: any = {}) => {
@@ -16,6 +15,7 @@ interface IRequestProps {
   method?: string;
   headers?: any;
   params?: any;
+  authConfig?: Record<string, string>;
 }
 
 const BaseUrl = "";
