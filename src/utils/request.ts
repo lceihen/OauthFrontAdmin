@@ -1,5 +1,6 @@
 import { _window } from "@/utils";
 import { message } from "antd";
+import { authConfig } from "@/config";
 export const handleGetParamString = (data: any = {}) => {
   const queryArray: Array<string> = [];
   Object.keys(data).map((key) => {
