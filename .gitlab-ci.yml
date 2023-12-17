@@ -13,6 +13,7 @@ deploy:
     - front-docker-1
   before_script:
     - if [[ "$CI_COMMIT_REF_NAME" == "master" ]] || [[ "$CI_COMMIT_REF_NAME" == "main" ]]; then  export GIT_BRANCH=''; 
+      sed -i  's/LC-RUNCOMMAND/COPY nginx/nginx.conf \/etc\/nginx\/nginx.conf/g' Dockerfile;
       else 
       sed -i  's/LC-RUNCOMMAND/COPY nginx/nginx.beta.conf \/etc\/nginx\/nginx.conf/g' Dockerfile;
       export GIT_BRANCH=-$CI_COMMIT_REF_NAME ;  fi;
