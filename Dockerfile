@@ -26,8 +26,8 @@ RUN ./ossutil64 -c ~/.ossutilconfig cp -r -f dist oss://lcsubappassets/admin
 
 FROM nginx:alpine
 
-COPY /code/nginx/entry.conf /etc/nginx/nginx.conf
+COPY entry.conf /etc/nginx/nginx.conf
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=builder code/dist /usr/share/nginx/html

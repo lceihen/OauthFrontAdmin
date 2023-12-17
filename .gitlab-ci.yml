@@ -14,10 +14,11 @@ deploy:
   before_script:
     - if [[ "$CI_COMMIT_REF_NAME" == "master" ]] || [[ "$CI_COMMIT_REF_NAME" == "main" ]]; then  export GIT_BRANCH=''; 
       else 
-      sed -i  's/nginx.conf/nginx.beta.conf/g' Dockerfile;
+      mv ./nginx.beta.conf nginx.conf;
       export GIT_BRANCH=-$CI_COMMIT_REF_NAME ;  fi;
   script:
     - docker-compose  up -d --build
+    - ls
     - echo $GIT_BRANCH
     - cat Dockerfile
     - cat docker-compose.yaml
