@@ -11,3 +11,9 @@ export const inMicroEnv = window.__POWERED_BY_WUJIE__ === true;
 export const _window = inMicroEnv ? window.$wujie?.props?.realWindow : window;
 //@ts-ignore
 export const getSubAppProps = window.$wujie?.props || {};
+
+export const isLocal =
+  window.location.href.includes("127.0.0.1") ||
+  window.location.href.includes("localhost");
+
+export const isBeta = window.location.href.includes("beta");

@@ -1,36 +1,10 @@
 image: node:16.3.0
 
-# stages:
-#  - deploy
-
-# job_deploy:
-#   stage: deploy
-#   image: docker
-#   tags:
-#     - front
-#   script:
-#     - echo 'deploy'
-#     - docker build -t container .
-#     - if [ $(docker ps -aq --filter name=$CI_PROJECT_NAME) ]; then docker rm -f $CI_PROJECT_NAME;fi
-#     - docker run  -p 8086:80 -d  --name $CI_PROJECT_NAME container
-
-# - build
-# dependencies:
-#   - build
-#1
-
 stages:
   - deploy
 
-# build:
-#   image: docker/compose:latest
-#   stage: build
-#   script:
-#     - docker-compose build
-#   artifacts:
-#     paths:
-#       - ./
-#       - docker-compose.yml
+variables:
+  APP: "admin"
 
 deploy:
   image: docker/compose:latest
@@ -38,11 +12,12 @@ deploy:
   tags:
     - front-docker-1
   before_script:
-    - if [[ "$CI_COMMIT_REF_NAME" == "master" ]] || [[ "$CI_COMMIT_REF_NAME" == "main" ]]; then  echo -e "\nSELF_DOMAIN_NAME=''" >> .env; else echo -e "\nSELF_DOMAIN_NAME=-$CI_COMMIT_REF_NAME" >> .env;  fi;
-    - cat .env
-    - ls -las
-    - pwd
-    - sed 's/servername/'"$CI_COMMIT_REF_NAME"'/g' docker-compose.yaml >docker-compose-updated.yaml
-    - cat docker-compose-updated.yaml
+    - if [[ "$CI_COMMIT_REF_NAME" == "master" ]] || [[ "$CI_COMMIT_REF_NAME" == "main" ]]; then  export GIT_BRANCH=''; 
+      else 
+      export GIT_BRANCH=-$CI_COMMIT_REF_NAME ;  fi;
   script:
-    - docker-compose -f docker-compose-updated.yaml up -d --build
+    - docker-compose  up -d --build
+    - echo $GIT_BRANCH
+    - cat Dockerfile
+    - cat docker-compose.yaml
+    - echo https://${APP}${GIT_BRANCH}.abclive.cloud  
