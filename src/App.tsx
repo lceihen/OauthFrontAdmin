@@ -1,11 +1,14 @@
 import { BrowserRouter } from "react-router-dom";
-
+import Cookies from "js-cookie";
 import styles from "./index.module.css";
 
 import RouterConfigElement from "@/routers";
+import { useEffect } from "react";
 
 function App() {
-  // if (!Cookies.get("token"))
+  useEffect(() => {
+    Cookies.set("app", "admin");
+  }, []);
   return (
     <div className={styles.app_container}>
       <BrowserRouter>
