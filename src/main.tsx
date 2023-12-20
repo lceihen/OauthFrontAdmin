@@ -9,4 +9,3 @@ import App from "./App.tsx";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <App />
 );
-console.log("admin-" + import.meta.env.MODE);
