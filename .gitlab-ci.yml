@@ -23,7 +23,7 @@ deploy:
       fi;
     - sed -i  "s/lcApp/${APP}-${GIT_BRANCH}/g" ./deploy/docker-compose.yaml;
   script:
-    - docker-compose -f ./deploy/docker-compose.yaml  up -d --build
+    - docker-compose -f ./deploy/docker-compose.yaml -p OauthFrontAdmin  up -d --build
     - echo https://${APP}${GIT_BRANCH}.abclive.cloud
 
 notification:
