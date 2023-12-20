@@ -14,9 +14,9 @@ RUN pnpm install
 
 ADD . /code
 
-# RUN pnpm run build
+RUN pnpm run build
 
-RUN LC-RUNCOMMAND
+# RUN LC-RUNCOMMAND
 
 RUN wget http://gosspublic.alicdn.com/ossutil/1.6.18/ossutil64
 
