@@ -1,11 +1,11 @@
 image: node:16.3.0
 
+variables:
+  APP: "admin"
+
 stages:
   - deploy
   - notification
-
-variables:
-  APP: "admin"
 
 deploy:
   image: docker/compose:latest

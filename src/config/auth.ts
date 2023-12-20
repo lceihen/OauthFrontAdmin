@@ -44,7 +44,7 @@ export const microAuthConfig = {
 
 export const handleGetConfig = () => {
   const config = inMicroEnv ? microAuthConfig : adminAuthConfig;
-
+  console.log(isLocal, isBeta);
   if (isLocal) {
     return config["local"];
   } else if (isBeta) {
