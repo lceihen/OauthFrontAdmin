@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "devbeta": "vite --mode beta",
-    "beta": "vite --mode beta",
-    "build": "vite build",
+    "beta": "vite --mode beta build",
+    "build": "vite  build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
