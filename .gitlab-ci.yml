@@ -13,10 +13,14 @@ deploy:
   tags:
     - front-docker-1
   before_script:
-    - if [[ "$CI_COMMIT_REF_NAME" == "master" ]] || [[ "$CI_COMMIT_REF_NAME" == "main" ]]; then  export GIT_BRANCH='';
+    - if [[ "$CI_COMMIT_REF_NAME" == "master" ]] || [[ "$CI_COMMIT_REF_NAME" == "main" ]]; then
+      export GIT_BRANCH='';
+      sed -i  's/LC-RUNCOMMAND/pnpm run build/g' ./deploy/Dockerfile;
       else
       mv ./deploy/nginx/nginx.beta.conf ./deploy/nginx/nginx.conf;
-      export GIT_BRANCH=-$CI_COMMIT_REF_NAME ;  fi;
+      export GIT_BRANCH=-$CI_COMMIT_REF_NAME ;
+      sed -i  's/LC-RUNCOMMAND/pnpm run beta/g' ./deploy/Dockerfile;
+      fi;
   script:
     - docker-compose -f ./deploy/docker-compose.yaml  up -d --build
     - echo https://${APP}${GIT_BRANCH}.abclive.cloud
