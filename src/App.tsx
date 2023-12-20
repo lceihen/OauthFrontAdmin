@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-    Cookies.set("app", "admin");
+    Cookies.set("appTag", "admin");
   }, []);
   return (
     <div className={styles.app_container}>
