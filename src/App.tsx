@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 import RouterConfigElement from "@/routers";
 import { useEffect } from "react";
 
-console.log("--------", import.meta.env);
+console.log("---------", import.meta.env);
 
 function App() {
   useEffect(() => {
