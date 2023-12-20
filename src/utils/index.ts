@@ -12,9 +12,11 @@ export const _window = inMicroEnv ? window.$wujie?.props?.realWindow : window;
 //@ts-ignore
 export const getSubAppProps = window.$wujie?.props || {};
 
-export const isLocal = import.meta.env.VITE_USER_NODE_ENV === "development";
+export const isLocal =
+  window.location.href.includes("127.0.0.1") ||
+  window.location.href.includes("localhost");
 
-export const isBeta = import.meta.env.VITE_USER_NODE_ENV === "beta";
+export const isBeta = window.location.href.includes("beta");
 
 export const handleGetEnv = () => {
   if (isLocal) return "local";
